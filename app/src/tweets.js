@@ -44,21 +44,57 @@ app.get('/users/:id', async (req, res) => {
     }
 })
 
+// display form to post a new tweet:
+app.get('/newtweet', async (req, res) => {
+
+    try {
+        const docs = await client.query(
+            Map(
+                Paginate(
+                    Documents(
+                        Collection('users')
+                    )
+                    
+                ),
+                Lambda(d => Get(d))
+            )
+
+            
+        )
+
+        let users = [];
+        
+        for(let i = 0; i < docs.data.length; i++) {
+            users.push(docs.data[i].data.name);
+        }
+
+        
+        // res.send(users);
+        res.render("newtweet", {users: users});
+
+    } catch(err) {  
+        res.send(err);
+    }
+});
+
+
 // post a tweet (user and text are hard coded at the moment)
 app.post('/tweet', async (req, res) => {
-    const data = {
-        user: Call(Fn("getUser"), 'bob'), // user to make the tweet for
-        text: 'I am bob yo'
-    }
+    // const data = {
+    //     user: Call(Fn("getUser"), 'bob'), // user to make the tweet for
+    //     text: 'I am bob yo'
+    // }
 
-    const doc = await client.query(
-        Create(
-            Collection('tweets'),
-            { data }
-        )
-    )
+    // const doc = await client.query(
+    //     Create(
+    //         Collection('tweets'),
+    //         { data }
+    //     )
+    // )
 
-    res.send(doc)
+    // res.send(doc)
+    console.log(req.body)
+    res.redirect('/newtweet');
 
 });
 
@@ -198,8 +234,8 @@ app.get('/all', async (req, res) => {
 
         }
         
-        res.send(tweets);
-        // res.render("feed", {docs: tweets});
+        // res.send(tweets);
+        res.render("all", {docs: tweets});
 
     } catch(err) {  
         res.send(err);

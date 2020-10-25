@@ -1,0 +1,17 @@
+<%- include('./partials/header') %> 
+<%- include('./partials/nav') %> 
+<div class="container">
+
+
+    <% docs.forEach(tweet => { %> 
+        <div class="media">
+            <div class="media-body">
+            <h5 class="mt-0"><%= tweet.user %></h5>
+            <%= tweet.text %> 
+            </div>
+        </div>
+    <% }); %> 
+
+</div>
+
+<%- include('./partials/footer') %> 

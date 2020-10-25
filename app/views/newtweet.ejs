@@ -1,0 +1,23 @@
+<%- include('./partials/header') %> 
+<%- include('./partials/nav') %> 
+
+<div class="container">
+    <br />
+    <form action="/tweet" method="POST" >
+        <div class="form-group">
+            <label for="selectUser">User: </label>
+            <select class="form-control" name="user">
+                <% users.forEach(user => { %> 
+                    <option value="<%= user %>"> <%= user %></option>
+                <% }) %> 
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="inputText">Text</label>
+          <input type="text" class="form-control" placeholder="text" name="text" value="yo">
+        </div>
+        <input type="submit" value="submit" class="btn btn-primary">
+    </form>
+</div>
+
+<%- include('./partials/footer') %> 
