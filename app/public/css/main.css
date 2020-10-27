@@ -1,3 +1,32 @@
+body {
+    height: 100vh;
+}
+
+
+
+#main-all-tweets {
+    margin-top: 0;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-right: 1px solid white ;
+    border-left: 1px solid white ;
+
+
+}
+
+
 .tweet {
-    background-color: #333 !important;
+    background-color: #555 !important;
+    color: #fff;
+    margin: 10px 0px 10px 0px;
+    padding: 0px 10px 0px 10px;
+
+    /* width: 75%;s */
+
+}
+
+label {
+    color: white;
 }

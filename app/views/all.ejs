@@ -1,11 +1,11 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
-<div class="container">
+<div class="container bg-dark" id="main-all-tweets">
 
 
     <% docs.reverse().forEach(tweet => { %> 
-        <div class="media tweet">
-            <div class="media-body">
+        <div class="card tweet">
+            <div class="card-body">
             <h5 class="mt-0"><%= tweet.user %></h5>
             <%= tweet.text %> 
             </div>
