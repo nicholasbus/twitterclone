@@ -1,17 +1,37 @@
 <%- include('./partials/header') %> 
 <%- include('./partials/nav') %> 
-<div class="container bg-dark" id="main-all-tweets">
 
-
-    <% docs.reverse().forEach(tweet => { %> 
-        <div class="card tweet">
-            <div class="card-body">
-            <h5 class="mt-0"><%= tweet.user %></h5>
-            <%= tweet.text %> 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="left-buttons">
+                <a href="" class="left-links"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;Home</a>
+                <a href="" class="left-links"><i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Profile</a>
+                <a href="" class="left-links"><i class="fas fa-pen-square"></i>&nbsp;&nbsp;&nbsp;Tweet</a>
             </div>
         </div>
-    <% }); %> 
-
+        <div class="col-6">
+            
+            
+            
+            <div class="bg-dark" id="main-all-tweets">
+            
+            
+                <% docs.reverse().forEach(tweet => { %> 
+                    <div class="card tweet">
+                        <div class="card-body">
+                        <h5 class="mt-0"><%= tweet.user %></h5>
+                        <%= tweet.text %> 
+                        </div>
+                    </div>
+                <% }); %> 
+            
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
 </div>
+
+
 
 <%- include('./partials/footer') %> 
