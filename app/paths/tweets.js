@@ -80,21 +80,21 @@ app.get('/newtweet', async (req, res) => {
 
 // post a tweet (user and text are hard coded at the moment)
 app.post('/tweet', async (req, res) => {
-    // const data = {
-    //     user: Call(Fn("getUser"), 'bob'), // user to make the tweet for
-    //     text: 'I am bob yo'
-    // }
+    const data = {
+        user: Call(Fn("getUser"), req.body.user), // user to make the tweet for
+        text: req.body.text
+    }
 
-    // const doc = await client.query(
-    //     Create(
-    //         Collection('tweets'),
-    //         { data }
-    //     )
-    // )
+    const doc = await client.query(
+        Create(
+            Collection('tweets'),
+            { data }
+        )
+    )
 
-    // res.send(doc)
-    console.log(req.body)
-    res.redirect('/newtweet');
+    
+    // console.log(req.body)
+    res.redirect('/all');
 
 });
 

@@ -3,8 +3,8 @@
 <div class="container">
 
 
-    <% docs.forEach(tweet => { %> 
-        <div class="media">
+    <% docs.reverse().forEach(tweet => { %> 
+        <div class="media tweet">
             <div class="media-body">
             <h5 class="mt-0"><%= tweet.user %></h5>
             <%= tweet.text %> 
