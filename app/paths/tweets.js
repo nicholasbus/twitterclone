@@ -77,6 +77,63 @@ app.get('/newtweet', async (req, res) => {
     }
 });
 
+// display the form to create a new user:
+app.get('/newuser', (req, res) => {
+    res.render('newuser', {err: null});
+});
+
+// Create the new user in the database:
+app.post('/newuser', async (req, res) => {
+    try {
+        const docs = await client.query(
+            Map(
+                Paginate(
+                    Documents(
+                        Collection('users')
+                    )
+                    
+                ),
+                Lambda(d => Get(d))
+            )
+
+            
+        )
+
+        let users = [];
+        
+        for(let i = 0; i < docs.data.length; i++) {
+            users.push(docs.data[i].data.name);
+        }
+
+        // ---------
+
+        if(!users.includes(req.body.username.toLowerCase()) && req.body.username.trim().length !== 0) {
+            const data = {
+                name: req.body.username.trim()
+            }
+    
+            const doc = await client.query(
+                Create(
+                    Collection('users'),
+                    { data }
+                )
+            )
+            .catch(err => res.send(err));
+    
+    
+    
+            res.redirect('/newtweet')
+        } else {
+            res.render('newuser', { err: 'username already exists' })
+        }
+
+        
+        
+
+    } catch(err) {  
+        res.send(err);
+    }
+});
 
 // post a tweet (user and text are hard coded at the moment)
 app.post('/tweet', async (req, res) => {
